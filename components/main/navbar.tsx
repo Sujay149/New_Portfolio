@@ -1,12 +1,15 @@
-'use client';
+"use client";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS, SOCIALS } from "@/constants";
 import { motion, AnimatePresence } from "framer-motion";
+import ContactModal from "@/components/sub/contact-modal";
+import { MdOutlineMail } from "react-icons/md";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
   const closeMenu = () => setIsMobileMenuOpen(false);
 
@@ -28,7 +31,7 @@ export const Navbar = () => {
             className="cursor-pointer"
           />
           <span className="hidden sm:block text-white font-bold tracking-wide">
-            I'm Rahman | Devxora
+            I&apos;m Sujay | Fullstack Developer
           </span>
         </Link>
 
@@ -45,19 +48,16 @@ export const Navbar = () => {
           ))}
         </div>
 
-        {/* Social Links (Desktop) */}
+        {/* Hire Me Button (Desktop) */}
         <div className="hidden md:flex items-center gap-5">
-          {SOCIALS.map(({ link, name, icon: Icon }) => (
-            <Link 
-              key={name} 
-              href={link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="flex items-center"
-            >
-              <Icon className="h-6 w-6 text-white hover:text-[rgb(112,66,248)] transition" />
-            </Link>
-          ))}
+          <button
+            onClick={() => setIsContactOpen(true)}
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-700 to-cyan-500 text-white px-4 py-2 rounded-lg font-medium hover:opacity-95 shadow-sm"
+            aria-label="Hire me"
+          >
+            <MdOutlineMail className="h-5 w-5" />
+            <span>Hire me</span>
+          </button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -69,6 +69,8 @@ export const Navbar = () => {
           {isMobileMenuOpen ? "✖" : "☰"}
         </button>
       </div>
+
+  <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -102,19 +104,12 @@ export const Navbar = () => {
               ))}
             </div>
 
-            {/* Mobile Social Icons */}
-            <div className="flex space-x-6 mt-10">
-              {SOCIALS.map(({ link, name, icon: Icon }) => (
-                <Link 
-                  key={name} 
-                  href={link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center"
-                >
-                  <Icon className="h-8 w-8 text-white hover:text-[rgb(112,66,248)] transition" />
-                </Link>
-              ))}
+            {/* Mobile Hire Me Button */}
+            <div className="mt-10">
+              <button onClick={() => setIsContactOpen(true)} className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-purple-700 to-cyan-500 text-white rounded-lg font-medium shadow-sm">
+                <MdOutlineMail className="h-5 w-5" />
+                <span>Hire me</span>
+              </button>
             </div>
           </motion.div>
         )}

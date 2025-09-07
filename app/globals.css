@@ -66,3 +66,30 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Uiverse GitHub button styles used by project and experience cards */
+.btn-github {
+  --bg: rgba(17, 24, 39, 0.6); /* slate-900/60 */
+  --border: rgba(255, 255, 255, 0.08);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.375rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid var(--border);
+  color: #e6eef8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.btn-github svg {
+  display: block;
+  color: #9fb4d9;
+}
+
+.btn-github:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(2,6,23,0.35);
+}
+
