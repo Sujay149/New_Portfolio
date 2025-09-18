@@ -14,6 +14,17 @@ export interface EducationItem {
 export const EDUCATION_META: EducationItem[] = [
   {
     id: 1,
+    title: "Diploma in Computer Science",
+    institution: "Smt. B. Seeta Polytechnic",
+    duration: "2020 - 2023",
+    description: "Diploma program covering core computer science subjects and practical skills.",
+    degree: "Diploma",
+    grade: "GPA: 78.31%",
+    achievements: [],
+  image: "/education/seeta-polytechnic-logo.jpg",
+    url: "https://seethapoly.edu.in/",
+  },{
+    id: 2,
     title: "Bachelors of Technology - Computer Science and Design",
     institution: "SRKR Engineering College",
     duration: "2023 - 2026",
@@ -24,16 +35,5 @@ export const EDUCATION_META: EducationItem[] = [
   image: "/education/srkr.jpeg",
     url: "https://www.srkrec.edu.in/",
   },
-  {
-    id: 2,
-    title: "Diploma in Computer Science",
-    institution: "Smt. B. Seeta Polytechnic",
-    duration: "2020 - 2023",
-    description: "Diploma program covering core computer science subjects and practical skills.",
-    degree: "Diploma",
-    grade: "GPA: 78.31%",
-    achievements: [],
-  image: "/education/seeta-polytechnic-logo.jpg",
-    url: "https://seethapoly.edu.in/",
-  },
+  
 ];
