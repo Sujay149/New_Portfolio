@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS, SOCIALS } from "@/constants";
@@ -10,110 +10,207 @@ import { MdOutlineMail } from "react-icons/md";
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      setScrolled(isScrolled);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-[#03001427] backdrop-blur-md shadow-lg shadow-[#2A0E61]/50 z-50">
-      <div className="flex items-center justify-between h-[70px] px-5 md:px-10">
-        {/* Logo & Name */}
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-black/40 backdrop-blur-2xl border-b border-white/20 shadow-2xl shadow-purple-500/10' 
+          : 'bg-black/20 backdrop-blur-xl border-b border-white/10'
+      }`}
+      style={{
+        boxShadow: scrolled 
+          ? '0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1)' 
+          : '0 4px 16px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05)'
+      }}
+    >
+      <div className="flex items-center justify-between h-[80px] px-6 md:px-12 max-w-7xl mx-auto">
+        {/* Enhanced Logo & Name */}
         <Link 
           href="#about-me" 
-          className="flex items-center gap-2" 
+          className="flex items-center gap-3 group" 
           onClick={closeMenu}
         >
-          <Image
-            src="/logo.png"
-            alt="Logo"
-            width={40}
-            height={40}
-            draggable={false}
-            className="cursor-pointer"
-          />
-          <span className="hidden sm:block text-white font-bold tracking-wide">
-            I&apos;m Sujay | Fullstack Developer
-          </span>
+          <motion.div
+            whileHover={{ rotate: 360, scale: 1.1 }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={45}
+              height={45}
+              draggable={false}
+              className="cursor-pointer drop-shadow-lg"
+            />
+            <div className="absolute inset-0 bg-gradient-glow opacity-0 group-hover:opacity-30 rounded-full blur-lg transition-opacity duration-300" />
+          </motion.div>
+          <div className="hidden sm:block">
+            <div className="text-white font-bold text-lg gradient-text">
+              Sujay
+            </div>
+            <div className="text-gray-400 text-sm font-medium">
+              Full Stack Developer
+            </div>
+          </div>
         </Link>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8 bg-[rgba(3,0,20,0.37)] px-8 py-2 rounded-full border border-[rgba(112,66,248,0.38)] text-gray-200">
-          {NAV_LINKS.map((link) => (
-            <Link 
-              key={link.title} 
-              href={link.link} 
-              className="hover:text-[rgb(112,66,248)] transition font-medium"
-            >
-              {link.title}
-            </Link>
+        {/* Enhanced Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-2 bg-black/60 backdrop-blur-xl px-6 py-3 rounded-2xl border border-white/20 shadow-lg shadow-purple-500/20">
+          {NAV_LINKS.map((link, index) => (
+            <motion.div key={link.title}>
+              <Link 
+                href={link.link} 
+                className="relative px-4 py-2 text-gray-200 hover:text-white transition-all duration-300 font-medium rounded-lg group"
+              >
+                <span className="relative z-10">{link.title}</span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-cyan-600/30 opacity-0 group-hover:opacity-100 rounded-lg transition-opacity duration-300"
+                  whileHover={{ scale: 1.05 }}
+                />
+              </Link>
+            </motion.div>
           ))}
         </div>
 
-        {/* Hire Me Button (Desktop) */}
+        {/* Enhanced Hire Me Button (Desktop) */}
         <div className="hidden md:flex items-center gap-5">
-          <button
+          <motion.button
             onClick={() => setIsContactOpen(true)}
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-700 to-cyan-500 text-white px-4 py-2 rounded-lg font-medium hover:opacity-95 shadow-sm"
+            className="btn-primary group relative overflow-hidden"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             aria-label="Hire me"
           >
-            <MdOutlineMail className="h-5 w-5" />
-            <span>Hire me</span>
-          </button>
+            <span className="relative z-10 flex items-center gap-2">
+              <motion.div
+                whileHover={{ rotate: 15 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <MdOutlineMail className="h-5 w-5" />
+              </motion.div>
+              Hire Me
+            </span>
+          </motion.button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-white text-3xl flex items-center justify-center"
+        {/* Enhanced Mobile Menu Button */}
+        <motion.button
+          className="md:hidden relative w-10 h-10 flex flex-col items-center justify-center bg-black/60 backdrop-blur-xl rounded-lg border border-white/20 shadow-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          whileTap={{ scale: 0.9 }}
           aria-label="Toggle menu"
         >
-          {isMobileMenuOpen ? "✖" : "☰"}
-        </button>
+          <motion.div
+            className="w-6 h-0.5 bg-white rounded-full"
+            animate={isMobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.div
+            className="w-6 h-0.5 bg-white rounded-full mt-1.5"
+            animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          />
+          <motion.div
+            className="w-6 h-0.5 bg-white rounded-full mt-1.5"
+            animate={isMobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+            transition={{ duration: 0.3 }}
+          />
+        </motion.button>
       </div>
 
-  <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
+      <ContactModal open={isContactOpen} onClose={() => setIsContactOpen(false)} />
 
-      {/* Mobile Menu */}
+      {/* Enhanced Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, x: 300 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 300 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed top-0 right-0 w-3/4 sm:w-1/2 h-screen bg-[#030014]/80 backdrop-blur-lg shadow-lg flex flex-col items-center justify-center text-gray-300 md:hidden"
-          >
-            {/* Close Button */}
-            <button
-              className="absolute top-5 right-6 text-white text-3xl"
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               onClick={closeMenu}
+            />
+            
+            {/* Menu Panel */}
+            <motion.div
+              initial={{ opacity: 0, x: 300, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: 300, scale: 0.9 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="fixed top-0 right-0 w-80 h-screen bg-black/90 backdrop-blur-2xl shadow-2xl flex flex-col z-50 md:hidden border-l border-white/20"
             >
-              ✖
-            </button>
-
-            {/* Mobile Links */}
-            <div className="flex flex-col items-center space-y-8 text-lg font-medium">
-              {NAV_LINKS.map((link) => (
-                <Link 
-                  key={link.title} 
-                  href={link.link} 
-                  onClick={closeMenu} 
-                  className="hover:text-[rgb(112,66,248)] transition"
+              {/* Header */}
+              <div className="flex items-center justify-between p-6 border-b border-white/10">
+                <div className="text-white font-semibold text-lg gradient-text">Menu</div>
+                <motion.button
+                  className="w-10 h-10 flex items-center justify-center bg-black/60 backdrop-blur-xl rounded-lg border border-white/20 hover:bg-white/10 transition-colors"
+                  onClick={closeMenu}
+                  whileTap={{ scale: 0.9 }}
                 >
-                  {link.title}
-                </Link>
-              ))}
-            </div>
+                  <span className="text-white text-xl">✖</span>
+                </motion.button>
+              </div>
 
-            {/* Mobile Hire Me Button */}
-            <div className="mt-10">
-              <button onClick={() => setIsContactOpen(true)} className="inline-flex items-center justify-center gap-2 px-5 py-3 bg-gradient-to-r from-purple-700 to-cyan-500 text-white rounded-lg font-medium shadow-sm">
-                <MdOutlineMail className="h-5 w-5" />
-                <span>Hire me</span>
-              </button>
-            </div>
-          </motion.div>
+              {/* Navigation Links */}
+              <div className="flex-1 flex flex-col items-center justify-center space-y-8 px-6">
+                {NAV_LINKS.map((link, index) => (
+                  <motion.div
+                    key={link.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <Link 
+                      href={link.link} 
+                      onClick={closeMenu} 
+                      className="text-xl font-medium text-gray-300 hover:text-white hover:gradient-text transition-all duration-300 py-2 px-4 rounded-lg hover:bg-white/5"
+                    >
+                      {link.title}
+                    </Link>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Mobile Hire Me Button */}
+              <div className="p-6 border-t border-white/10">
+                <motion.button 
+                  onClick={() => {
+                    setIsContactOpen(true);
+                    closeMenu();
+                  }} 
+                  className="w-full btn-primary"
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    <MdOutlineMail className="h-5 w-5" />
+                    Hire Me
+                  </span>
+                </motion.button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 };

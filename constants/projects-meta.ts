@@ -18,7 +18,7 @@ export const PROJECTS_META = [
   {
     title: "ReDestiny",
   // redestiny image not in repo; use medibot.png as a placeholder preview/logo
-  logo: "/projects/medibot.png",
+  logo: "/projects/redestiny.png",
   preview: "/projects/Redestiny.png",
     tags: ["React.js", "Tailwind CSS", "Bootstrap", "Material UI", "MongoDB", "Node.js"],
     live: "example.com",
@@ -29,7 +29,7 @@ export const PROJECTS_META = [
     logo: "/projects/sihgujarat.png",
   preview: "/projects/sihgujarat.png",
     tags: ["React.js", "Tailwind CSS", "Bootstrap", "Material UI", "MongoDB", "Node.js"],
-    live: "example.com",
+    live: "https://innovationgujarat.vercel.app/",
     code: "https://github.com/Sujay149/SIH", // Add real repo link if available
   },
 ];

@@ -1,0 +1,6 @@
+<!-- Placeholder for profile image -->
+<!-- To add your profile picture:
+1. Replace this file with your actual profile image (profile.jpg, profile.png, etc.)
+2. Make sure the filename matches what's used in the about component
+3. Recommended size: 300x300px or larger, square aspect ratio
+-->
