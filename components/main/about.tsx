@@ -115,7 +115,7 @@ export const About = () => {
             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
             className="relative inline-block"
           >
-            <h2 className="text-6xl sm:text-7xl md:text-8xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-400 to-cyan-400 mb-8 relative">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-400 to-cyan-400 mb-8 relative">
               ABOUT
               <motion.div
                 className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-2xl"
@@ -430,9 +430,48 @@ export const About = () => {
 const Approach = () => {
   return (
     <section className="w-full py-20">
-      <h1 className="heading">
-        My <span className="text-purple">approach</span>
-      </h1>
+      {/* Revolutionary Section Title */}
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="text-center mb-20"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
+          className="relative inline-block"
+        >
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-400 to-cyan-400 mb-8 relative">
+            MY APPROACH
+            <motion.div
+              className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-2xl"
+              animate={{ 
+                scale: [1, 1.1, 1],
+                opacity: [0.5, 0.8, 0.5]
+              }}
+              transition={{ 
+                duration: 4,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+          </h2>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+          className="relative"
+        >
+          <p className="text-2xl text-gray-300 font-light tracking-wide max-w-4xl mx-auto leading-relaxed">
+            From Concept to Deployment:{" "}
+            <span className="gradient-text font-semibold">My Three-Phase Development Process</span>
+          </p>
+        </motion.div>
+      </motion.div>
       {/* remove bg-white dark:bg-black */}
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
         {/* add des prop */}
