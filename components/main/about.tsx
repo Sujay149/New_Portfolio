@@ -49,9 +49,7 @@ export const About = () => {
     { name: "Frontend Development", level: 95, icon: "⚛️", color: "from-blue-500 to-cyan-500" },
     { name: "Backend Development", level: 90, icon: "⚙️", color: "from-green-500 to-emerald-500" },
     { name: "Database Design", level: 85, icon: "🗄️", color: "from-purple-500 to-pink-500" },
-    { name: "DevOps & Cloud", level: 80, icon: "☁️", color: "from-orange-500 to-red-500" },
-    { name: "UI/UX Design", level: 88, icon: "🎨", color: "from-indigo-500 to-purple-500" },
-    { name: "Mobile Development", level: 82, icon: "📱", color: "from-teal-500 to-blue-500" }
+    { name: "Cloud", level: 80, icon: "☁️", color: "from-orange-500 to-red-500" },
   ];
 
   return (
