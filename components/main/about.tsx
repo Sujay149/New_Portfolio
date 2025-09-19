@@ -203,14 +203,7 @@ export const About = () => {
                       <h3 className="text-2xl font-bold text-white">Sujay Babu</h3>
                       <p className="text-purple-400 font-medium">Full Stack Developer</p>
                       <div className="flex justify-center space-x-6 mt-4">
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-cyan-400">50+</div>
-                          <div className="text-xs text-gray-400">Projects</div>
-                        </div>
-                        <div className="text-center">
-                          <div className="text-2xl font-bold text-purple-400">3+</div>
-                          <div className="text-xs text-gray-400">Years</div>
-                        </div>
+                      
                         <div className="text-center">
                           <div className="text-2xl font-bold text-pink-400">∞</div>
                           <div className="text-xs text-gray-400">Passion</div>
