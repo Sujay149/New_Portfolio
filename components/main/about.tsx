@@ -53,7 +53,7 @@ export const About = () => {
   ];
 
   return (
-    <section ref={ref} id="about-me" className="relative min-h-screen flex flex-col items-center justify-center py-20 px-6 md:px-20 overflow-hidden">
+    <section ref={ref} id="about-me" className="relative flex flex-col items-center justify-center py-16 px-4 sm:px-6 md:px-12 overflow-hidden">
       {/* Advanced Background Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Animated Mesh Gradient */}
@@ -63,17 +63,17 @@ export const About = () => {
         />
         
         {/* Floating Particles */}
-        {[...Array(20)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-2 h-2 bg-white/20 rounded-full"
+            className="absolute w-1.5 h-1.5 bg-white/20 rounded-full"
             animate={{
               x: [0, Math.random() * 100 - 50],
               y: [0, Math.random() * 100 - 50],
               opacity: [0, 1, 0],
             }}
             transition={{
-              duration: Math.random() * 10 + 10,
+              duration: Math.random() * 10 + 15,
               repeat: Infinity,
               delay: Math.random() * 5,
             }}
@@ -95,7 +95,7 @@ export const About = () => {
             repeat: Infinity,
             ease: "linear"
           }}
-          className="absolute top-1/2 left-1/2 w-[800px] h-[800px] -translate-x-1/2 -translate-y-1/2"
+          className="absolute top-1/2 left-1/2 w-[600px] h-[600px] sm:w-[800px] sm:h-[800px] -translate-x-1/2 -translate-y-1/2"
         >
           <div className="absolute inset-0 bg-gradient-conic from-transparent via-purple-500/10 to-transparent" />
         </motion.div>
@@ -107,7 +107,7 @@ export const About = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.5 }}
@@ -115,10 +115,10 @@ export const About = () => {
             transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
             className="relative inline-block"
           >
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-400 to-cyan-400 mb-8 relative">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-400 to-cyan-400 mb-6 relative">
               ABOUT
               <motion.div
-                className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-2xl"
+                className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-xl sm:blur-2xl"
                 animate={{ 
                   scale: [1, 1.1, 1],
                   opacity: [0.5, 0.8, 0.5]
@@ -138,7 +138,7 @@ export const About = () => {
             transition={{ delay: 0.3, duration: 0.8 }}
             className="relative"
           >
-            <p className="text-2xl text-gray-300 font-light tracking-wide max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-4xl mx-auto leading-relaxed">
               Crafting Digital Experiences That{" "}
               <span className="gradient-text font-semibold">Transform Ideas Into Reality</span>
             </p>
@@ -146,31 +146,31 @@ export const About = () => {
         </motion.div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
           
           {/* Left: Interactive Profile & Stats */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-12"
+            className="space-y-10"
           >
             {/* 3D Profile Card */}
             <div className="relative group perspective-1000">
               <motion.div
-                className="relative w-full aspect-square max-w-md mx-auto preserve-3d"
+                className="relative w-full aspect-square max-w-sm sm:max-w-md mx-auto preserve-3d"
                 whileHover={{ rotateY: 15, rotateX: 10 }}
                 onHoverStart={() => setIsHovered(true)}
                 onHoverEnd={() => setIsHovered(false)}
                 transition={{ type: "spring", stiffness: 300 }}
               >
                 {/* Main Profile Card */}
-                <div className="absolute inset-0 card-premium p-8 transform-gpu">
-                  <div className="relative h-full flex flex-col items-center justify-center space-y-6">
+                <div className="absolute inset-0 card-premium p-6 sm:p-8 transform-gpu">
+                  <div className="relative h-full flex flex-col items-center justify-center space-y-4 sm:space-y-6">
                     {/* Profile Image with Advanced Effects */}
                     <div className="relative">
                       <motion.div
-                        className="w-48 h-48 rounded-full overflow-hidden relative"
+                        className="w-36 h-36 sm:w-48 sm:h-48 rounded-full overflow-hidden relative"
                         animate={isHovered ? { scale: 1.1 } : { scale: 1 }}
                         transition={{ type: "spring", stiffness: 300 }}
                       >
@@ -179,6 +179,7 @@ export const About = () => {
                           alt="Profile"
                           fill
                           className="object-cover"
+                          sizes="(max-width: 640px) 144px, 192px"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 to-transparent" />
                       </motion.div>
@@ -199,13 +200,20 @@ export const About = () => {
                     </div>
                     
                     {/* Interactive Stats */}
-                    <div className="text-center space-y-2">
-                      <h3 className="text-2xl font-bold text-white">Sujay Babu</h3>
-                      <p className="text-purple-400 font-medium">Full Stack Developer</p>
-                      <div className="flex justify-center space-x-6 mt-4">
-                      
+                    <div className="text-center space-y-1 sm:space-y-2">
+                      <h3 className="text-xl sm:text-2xl font-bold text-white">Sujay Babu</h3>
+                      <p className="text-purple-400 font-medium text-sm sm:text-base">Full Stack Developer</p>
+                      <div className="flex justify-center space-x-4 sm:space-x-6 mt-3 sm:mt-4">
                         <div className="text-center">
-                          <div className="text-2xl font-bold text-pink-400">∞</div>
+                          <div className="text-xl sm:text-2xl font-bold text-cyan-400">50+</div>
+                          <div className="text-xs text-gray-400">Projects</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xl sm:text-2xl font-bold text-purple-400">3+</div>
+                          <div className="text-xs text-gray-400">Years</div>
+                        </div>
+                        <div className="text-center">
+                          <div className="text-xl sm:text-2xl font-bold text-pink-400">∞</div>
                           <div className="text-xs text-gray-400">Passion</div>
                         </div>
                       </div>
@@ -215,9 +223,9 @@ export const About = () => {
                 
                 {/* Floating Elements */}
                 <motion.div
-                  className="absolute -top-4 -right-4 glass w-16 h-16 flex items-center justify-center text-2xl"
+                  className="absolute -top-2 -right-2 sm:-top-4 sm:-right-4 glass w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center text-xl sm:text-2xl"
                   animate={{ 
-                    y: [-10, 10, -10],
+                    y: [-8, 8, -8],
                     rotate: [0, 180, 360]
                   }}
                   transition={{ 
@@ -230,9 +238,9 @@ export const About = () => {
                 </motion.div>
                 
                 <motion.div
-                  className="absolute -bottom-6 -left-6 glass w-20 h-20 flex items-center justify-center text-3xl"
+                  className="absolute -bottom-3 -left-3 sm:-bottom-6 sm:-left-6 glass w-16 h-16 sm:w-20 sm:h-20 flex items-center justify-center text-2xl sm:text-3xl"
                   animate={{ 
-                    y: [10, -10, 10],
+                    y: [8, -8, 8],
                     rotate: [360, 180, 0]
                   }}
                   transition={{ 
@@ -247,8 +255,8 @@ export const About = () => {
             </div>
 
             {/* Interactive Skills Chart */}
-            <div className="space-y-6">
-              <h4 className="text-2xl font-bold text-white text-center mb-8">Technical Expertise</h4>
+            <div className="space-y-5">
+              <h4 className="text-xl sm:text-2xl font-bold text-white text-center mb-6">Technical Expertise</h4>
               <div className="grid gap-4">
                 {skills.map((skill, index) => (
                   <motion.div
@@ -258,14 +266,14 @@ export const About = () => {
                     transition={{ delay: index * 0.1 }}
                     className="group"
                   >
-                    <div className="flex items-center justify-between mb-2">
-                      <div className="flex items-center gap-3">
-                        <span className="text-2xl">{skill.icon}</span>
-                        <span className="text-white font-medium">{skill.name}</span>
+                    <div className="flex items-center justify-between mb-1.5">
+                      <div className="flex items-center gap-2 sm:gap-3">
+                        <span className="text-xl sm:text-2xl">{skill.icon}</span>
+                        <span className="text-white font-medium text-sm sm:text-base">{skill.name}</span>
                       </div>
-                      <span className="text-gray-400">{skill.level}%</span>
+                      <span className="text-gray-400 text-sm sm:text-base">{skill.level}%</span>
                     </div>
-                    <div className="w-full bg-gray-700/50 rounded-full h-3 overflow-hidden">
+                    <div className="w-full bg-gray-700/50 rounded-full h-2.5 sm:h-3 overflow-hidden">
                       <motion.div
                         className={`h-full bg-gradient-to-r ${skill.color} rounded-full relative`}
                         initial={{ width: 0 }}
@@ -286,15 +294,15 @@ export const About = () => {
             initial={{ opacity: 0, x: 100 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
+            className="space-y-6"
           >
             {/* Tab Navigation */}
-            <div className="flex space-x-2 mb-8">
+            <div className="flex flex-wrap justify-center sm:justify-start gap-2 mb-6">
               {tabs.map((tab, index) => (
                 <motion.button
                   key={index}
                   onClick={() => setActiveTab(index)}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
+                  className={`flex items-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl sm:rounded-2xl text-sm sm:text-base font-medium transition-all duration-300 ${
                     activeTab === index
                       ? 'glass-strong text-white border-purple-500/50'
                       : 'glass text-gray-400 hover:text-white'
@@ -302,7 +310,7 @@ export const About = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="text-xl">{tab.icon}</span>
+                  <span className="text-lg sm:text-xl">{tab.icon}</span>
                   <span>{tab.title}</span>
                 </motion.button>
               ))}
@@ -316,31 +324,31 @@ export const About = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.5 }}
-                className="card-premium p-8 space-y-6"
+                className="card-premium p-6 sm:p-8 space-y-5"
               >
-                <h3 className="text-3xl font-bold gradient-text">
+                <h3 className="text-2xl sm:text-3xl font-bold gradient-text">
                   {tabs[activeTab].content.heading}
                 </h3>
-                <p className="text-gray-300 text-lg leading-relaxed">
+                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
                   {tabs[activeTab].content.text}
                 </p>
                 
                 {/* Interactive Elements based on active tab */}
                 {activeTab === 0 && (
-                  <div className="grid grid-cols-2 gap-4 mt-6">
-                    <div className="glass p-4 text-center">
-                      <div className="text-2xl mb-2">🎓</div>
-                      <div className="text-sm text-gray-400">Continuous Learning</div>
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4 mt-4">
+                    <div className="glass p-3 sm:p-4 text-center">
+                      <div className="text-xl sm:text-2xl mb-1 sm:mb-2">🎓</div>
+                      <div className="text-xs sm:text-sm text-gray-400">Continuous Learning</div>
                     </div>
-                    <div className="glass p-4 text-center">
-                      <div className="text-2xl mb-2">💻</div>
-                      <div className="text-sm text-gray-400">Code Craftsmanship</div>
+                    <div className="glass p-3 sm:p-4 text-center">
+                      <div className="text-xl sm:text-2xl mb-1 sm:mb-2">💻</div>
+                      <div className="text-xs sm:text-sm text-gray-400">Code Craftsmanship</div>
                     </div>
                   </div>
                 )}
                 
                 {activeTab === 1 && (
-                  <div className="space-y-4">
+                  <div className="space-y-3">
                     {['Clean Code', 'User-Centric Design', 'Scalable Architecture'].map((principle, i) => (
                       <motion.div
                         key={principle}
@@ -350,17 +358,17 @@ export const About = () => {
                         className="flex items-center gap-3 glass p-3 rounded-lg"
                       >
                         <div className="w-2 h-2 bg-gradient-primary rounded-full" />
-                        <span className="text-gray-300">{principle}</span>
+                        <span className="text-gray-300 text-sm sm:text-base">{principle}</span>
                       </motion.div>
                     ))}
                   </div>
                 )}
                 
                 {activeTab === 2 && (
-                  <div className="glass p-6 bg-gradient-to-br from-purple-900/20 to-cyan-900/20">
+                  <div className="glass p-4 sm:p-6 bg-gradient-to-br from-purple-900/20 to-cyan-900/20">
                     <div className="text-center">
-                      <div className="text-4xl mb-4">🌟</div>
-                      <p className="text-purple-300 font-medium">
+                      <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🌟</div>
+                      <p className="text-purple-300 font-medium text-sm sm:text-base">
                         &ldquo;Technology is best when it brings people together.&rdquo; - Matt Mullenweg
                       </p>
                     </div>
@@ -370,17 +378,17 @@ export const About = () => {
             </AnimatePresence>
 
             {/* Call to Action */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-8">
+            <div className="flex flex-col sm:flex-row gap-4 pt-6">
               <motion.a
                 href="#projects"
                 className="btn-primary group flex-1 text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="flex items-center justify-center gap-2">
+                <span className="flex items-center justify-center gap-2 text-sm sm:text-base">
                   View My Work
                   <motion.svg 
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -396,10 +404,10 @@ export const About = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span className="flex items-center justify-center gap-2">
+                <span className="flex items-center justify-center gap-2 text-sm sm:text-base">
                   Download CV
                   <motion.svg 
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
@@ -422,13 +430,13 @@ export const About = () => {
 
 const Approach = () => {
   return (
-    <section className="w-full py-20">
+    <section className="w-full py-16">
       {/* Revolutionary Section Title */}
       <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="text-center mb-20"
+        className="text-center mb-16"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
@@ -436,10 +444,10 @@ const Approach = () => {
           transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
           className="relative inline-block"
         >
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-400 to-cyan-400 mb-8 relative">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-400 to-cyan-400 mb-6 relative">
             MY APPROACH
             <motion.div
-              className="absolute -inset-4 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-2xl"
+              className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-purple-600/20 to-cyan-600/20 rounded-3xl blur-xl sm:blur-2xl"
               animate={{ 
                 scale: [1, 1.1, 1],
                 opacity: [0.5, 0.8, 0.5]
@@ -459,14 +467,14 @@ const Approach = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
           className="relative"
         >
-          <p className="text-2xl text-gray-300 font-light tracking-wide max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-light tracking-wide max-w-4xl mx-auto leading-relaxed">
             From Concept to Deployment:{" "}
             <span className="gradient-text font-semibold">My Three-Phase Development Process</span>
           </p>
         </motion.div>
       </motion.div>
       {/* remove bg-white dark:bg-black */}
-      <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
+      <div className="my-16 flex flex-col lg:flex-row items-center justify-center w-full gap-8">
         {/* add des prop */}
         <Card
           title="Planning & Strategy"
@@ -534,7 +542,7 @@ const Card = ({
       onMouseLeave={() => setHovered(false)}
       // change h-[30rem] to h-[35rem], add rounded-3xl
       className="border border-black/[0.2] group/canvas-card flex items-center justify-center
-       dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative lg:h-[35rem] rounded-3xl "
+       dark:border-white/[0.2]  max-w-sm w-full mx-auto p-4 relative h-[30rem] sm:h-[35rem] rounded-3xl "
       style={{
         //   add these two
         //   you can generate the color from here https://cssgradient.io/
@@ -544,10 +552,10 @@ const Card = ({
       }}
     >
       {/* change to h-10 w-10 , add opacity-30  */}
-      <Icon className="absolute h-10 w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
-      <Icon className="absolute h-10 w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
+      <Icon className="absolute h-8 w-8 sm:h-10 sm:w-10 -top-3 -left-3 dark:text-white text-black opacity-30" />
+      <Icon className="absolute h-8 w-8 sm:h-10 sm:w-10 -bottom-3 -left-3 dark:text-white text-black opacity-30" />
+      <Icon className="absolute h-8 w-8 sm:h-10 sm:w-10 -top-3 -right-3 dark:text-white text-black opacity-30" />
+      <Icon className="absolute h-8 w-8 sm:h-10 sm:w-10 -bottom-3 -right-3 dark:text-white text-black opacity-30" />
 
       <AnimatePresence>
         {hovered && (
@@ -561,7 +569,7 @@ const Card = ({
         )}
       </AnimatePresence>
 
-      <div className="relative z-20 px-10">
+      <div className="relative z-20 px-4 sm:px-10">
         <div
           // add this for making it center
           // absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]
@@ -572,7 +580,7 @@ const Card = ({
         </div>
         <h2
           // change text-3xl, add text-center
-          className="dark:text-white text-center text-3xl opacity-0 group-hover/canvas-card:opacity-100
+          className="dark:text-white text-center text-2xl sm:text-3xl opacity-0 group-hover/canvas-card:opacity-100
          relative z-10 text-black mt-4  font-bold group-hover/canvas-card:text-white 
          group-hover/canvas-card:-translate-y-2 transition duration-200"
         >
@@ -607,7 +615,7 @@ const AceternityIcon = ({ order }: { order: string }) => {
         />
         <span
           className="inline-flex h-full w-full cursor-pointer items-center 
-        justify-center rounded-full bg-slate-950 px-5 py-2 text-purple backdrop-blur-3xl font-bold text-2xl"
+        justify-center rounded-full bg-slate-950 px-3 py-1 sm:px-5 sm:py-2 text-purple backdrop-blur-3xl font-bold text-xl sm:text-2xl"
         >
           {order}
         </span>
