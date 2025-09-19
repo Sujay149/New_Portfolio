@@ -52,7 +52,6 @@ space-portfolio/
     |-- page.tsx
   |- components/
     |-- main/
-        |--- encryption.tsx
         |--- footer.tsx
         |--- hero.tsx
         |--- navbar.tsx
